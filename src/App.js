@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import './App.scss';
+import { useState, useEffect, Fragment } from "react";
+import ListContainer from "./components/list-container/list-container.component";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () =>{
+  const [pokemon, setPokemon] = useState([]);
+  const [search, setSearch] = useState('');
+  
+  useEffect(() => {
+    fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')
+    .then(res => res.json())
+    .then(data => {
+      setPokemon(data.results)
+    })
+  }, []);
+
+  const filterPokemon = pokemon.filter(data => {
+    return data.name.toLowerCase().includes(search.toLowerCase())
+  })
+
+
+  return(
+    <Fragment>
+      <div className='nav'>
+        <h2>Filter through gen 1 Pokemon: <input type='search' value={search} placeholder='Enter Text Here...' onChange={e => setSearch(e.target.value)} /></h2>   
+      </div>
+      <ListContainer data={filterPokemon} />
+    </Fragment>
+  )
 }
 
 export default App;

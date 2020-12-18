@@ -1,0 +1,25 @@
+.box{
+    background-color: rgba(0, 0, 0, 0.507);
+    border-radius: .2em;
+
+    .image{
+        width: 100%;
+        height:13em;
+        background-size:contain !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background: white;
+        border-top-left-radius: .2em;
+        border-top-right-radius: .2em;
+    }
+
+    h4{
+        text-align: center;
+        background: crimson;
+        color: white;
+        height:3em;
+        margin: 0;
+        border-bottom-left-radius: .2em;
+        border-bottom-right-radius: .2em;
+    }
+}
